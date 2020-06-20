@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: url2video
+spec:
+  template:
+    spec:
+      containers:
+        - name: url2video
+          image: omartrigui/url-to-video
+      env:
+        - name: URL
+          value: "https://www.youtube.com/watch?v=PBYKqvDK8d8"
+        - name: DURATION
+          value: "20"
+        - name: OUTPUT_FILENAME
+          value: "forever_tracey.mp4"
+      restartPolicy: Never
+  backoffLimit: 2aa

@@ -1,0 +1,16 @@
+{
+  "name": "url-to-video",
+  "version": "1.0.0",
+  "description": "url-to-video generator allows you to create a video from html source.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chrome-remote-interface": "^0.28.2",
+    "wait-on": "^5.0.1"
+  },
+  "devDependencies": {}
+}
