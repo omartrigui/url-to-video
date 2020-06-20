@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Omar Trigui",
+  "license": "MIT",
   "dependencies": {
     "chrome-remote-interface": "^0.28.2",
     "wait-on": "^5.0.1"

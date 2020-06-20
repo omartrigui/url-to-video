@@ -1,13 +1,16 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: url2video
+  name: url-to-video
 spec:
   template:
     spec:
       containers:
-        - name: url2video
-          image: omartrigui/url-to-video
+        - name: url-to-video
+          image: cipheredbytes/url-to-video
+          volumeMounts:
+            - name: recordings
+              mountPath: /recordings/
       env:
         - name: URL
           value: "https://www.youtube.com/watch?v=PBYKqvDK8d8"
@@ -16,4 +19,8 @@ spec:
         - name: OUTPUT_FILENAME
           value: "forever_tracey.mp4"
       restartPolicy: Never
-  backoffLimit: 2aa
+      volumes:
+        - name: recordings
+          persistentVolumeClaim:
+          claimName: recordings-pv-claim
+  backoffLimit: 2

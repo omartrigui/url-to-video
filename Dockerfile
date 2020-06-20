@@ -1,7 +1,8 @@
 FROM ubuntu:xenial
 
 ADD https://github.com/just-containers/s6-overlay/releases/download/v2.0.0.1/s6-overlay-amd64.tar.gz /tmp/
-RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C / --exclude='./bin' && tar xzf /tmp/s6-overlay-amd64.tar.gz -C /usr ./bin
+RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C / && \
+    rm /tmp/s6-overlay-amd64.tar.gz
 
 RUN useradd apps
 
@@ -17,7 +18,7 @@ RUN apt-get update && \
 RUN add-apt-repository ppa:mc3man/xerus-media && \
     curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
     wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
-    echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
+    echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
 
 RUN apt-get update && \
     apt-get install -yqq \
@@ -35,13 +36,12 @@ WORKDIR /app/
 RUN npm install && \
     npm audit fix
 
-
 COPY . /app/
-
 
 RUN apt-get purge curl -y && \
     apt-get clean -y && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
 
+ENTRYPOINT ["/init"]
 CMD ["/app/entrypoint.sh"]

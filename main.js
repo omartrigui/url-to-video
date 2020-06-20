@@ -50,38 +50,41 @@ function getStartRecordingCommand () {
         '-strict -2 ' +
         '-ar 44100 ' +
         `-t ${process.env.DURATION} ` +
-        `/output/${process.env.OUTPUT_FILENAME}`
+        `/recordings/${process.env.OUTPUT_FILENAME}`
+}
+
+async function startChrome () {
+  exec(getStartChromeCommand())
+
+  await waitOn(opts)
+
+  const client = await CDP()
+
+  const { Network, Page } = client
+
+  Network.requestWillBeSent((params) => {
+    console.log(`Requested URL: ${params.request.url}`)
+  })
+
+  await Network.enable()
+  await Page.enable()
+  await Page.navigate({
+    url: process.env.URL
+  })
+  await Page.loadEventFired()
+
+  console.log('All assets are loaded')
+}
+
+async function fireRecorder () {
+  await exec(getStartRecordingCommand())
+  console.log('Recording completed')
 }
 
 async function init () {
-  let client
   try {
-    exec(getStartChromeCommand())
-
-    await waitOn(opts)
-
-    client = await CDP()
-
-    const {
-      Network,
-      Page
-    } = client
-
-    Network.requestWillBeSent((params) => {
-      console.log(params.request.url)
-    })
-
-    await Network.enable()
-    await Page.enable()
-    await Page.navigate({
-      url: process.env.URL
-    })
-    await Page.loadEventFired()
-
-    console.log('All assets are loaded')
-    await exec(getStartRecordingCommand())
-    console.log('Recording is completed')
-
+    await startChrome()
+    await fireRecorder()
   } catch (err) {
     console.error(err)
   } finally {
