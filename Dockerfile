@@ -1,5 +1,7 @@
 FROM ubuntu:xenial
 
+LABEL maintainer="omar.trigui.tn@gmail.com"
+
 ADD https://github.com/just-containers/s6-overlay/releases/download/v2.0.0.1/s6-overlay-amd64.tar.gz /tmp/
 RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C / && \
     rm /tmp/s6-overlay-amd64.tar.gz
@@ -28,7 +30,6 @@ RUN apt-get update && \
     xvfb \
     pulseaudio
 
-
 COPY package.json /app/
 
 WORKDIR /app/
@@ -36,7 +37,7 @@ WORKDIR /app/
 RUN npm install && \
     npm audit fix
 
-COPY . /app/
+COPY . .
 
 RUN apt-get purge curl -y && \
     apt-get clean -y && \

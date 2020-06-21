@@ -25,7 +25,8 @@ function getStartChromeCommand () {
         '--no-sandbox ' +
         '--disable-extensions ' +
         '--autoplay-policy=no-user-gesture-required ' +
-        '--allow-running-insecure-content --disable-features=TranslateUI"'
+        '--allow-running-insecure-content ' +
+        '--disable-features=TranslateUI"'
 }
 
 function getStartRecordingCommand () {
@@ -53,7 +54,7 @@ function getStartRecordingCommand () {
         `/recordings/${process.env.OUTPUT_FILENAME}`
 }
 
-async function startChrome () {
+async function fireChrome () {
   exec(getStartChromeCommand())
 
   await waitOn(opts)
@@ -68,25 +69,25 @@ async function startChrome () {
 
   await Network.enable()
   await Page.enable()
-  await Page.navigate({
-    url: process.env.URL
-  })
+  await Page.navigate({ url: process.env.URL })
   await Page.loadEventFired()
 
   console.log('All assets are loaded')
 }
 
 async function fireRecorder () {
+  console.log('Firing recorder')
   await exec(getStartRecordingCommand())
   console.log('Recording completed')
 }
 
 async function init () {
   try {
-    await startChrome()
+    await fireChrome()
     await fireRecorder()
   } catch (err) {
     console.error(err)
+    process.exit(1)
   } finally {
     process.exit()
   }

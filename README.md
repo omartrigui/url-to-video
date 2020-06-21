@@ -1,7 +1,7 @@
 ## Url-to-Video
 
 ## Overview
-Url-to-Video generator allows you to create a video from html source. 
+Url-to-Video generator allows you to create a video from html source. This project aims mainly to convert HTML content into video which could be useful in several use cases.
 
 ## Features
 
@@ -12,12 +12,12 @@ Url-to-Video generator allows you to create a video from html source.
 * **Node.js®** a JavaScript runtime built on Chrome's V8 JavaScript engine.
 * **Pulseaudio** a sound server that provides a number of features on top of the low-level audio interface ALSA on Linux.
 
-## Comparison with the existing solutions
-Most of the existing open source solution render web pages badly and they mainly lack audio support. 
-This solution rised to mitigate these issues.
+## Brief insights about the existing solutions
+Nowadays, the existing open source solutions are either based on [casperjs](https://www.casperjs.org/) or [puppeteer](https://github.com/puppeteer/puppeteer). As a result, the generated videos doesn't cover well rendered web pages and they mainly lack audio support.
+Fortunately, this project rised to mitigate these issues and fill the gap.
 
 ## How to test it
-
+After executing the following command, you will notice a new file created in the following destination `/tmp/forever_tracey.mp4`.
 ```bash
 docker run --rm \
            -v /tmp/:/recordings/ \
@@ -26,19 +26,18 @@ docker run --rm \
            -e OUTPUT_FILENAME=forever_tracey.mp4 \
             cipheredbytes/url-to-video
 ```
-
-You will notice a new file created in the following destination [/tmp/forever_tracey.mp4](https://github.com/OmarTrigui/url-to-video/raw/master/samples/forever_tracey.mp4).
+This is a [sample](./samples/forever_tracey.mp4) output file.
 
 ## Development
 
-Go to the project directory and run the following command:
+Run the following commands to build and run the project:
 
 ```bash
 git https://github.com/OmarTrigui/url-to-video.git && cd url-to-video/
 make docker.build docker.run
 ```
 
-## TODO list
+## Todo list
 
 - [ ] Add E2E tests
 - [ ] Tweak recording performance
@@ -48,3 +47,8 @@ make docker.build docker.run
 ## Contributing
 Contributions are always welcome, whether adding/suggesting new features, bug fixes, 
 documenting new file formats or simply editing some grammar.
+
+## License
+
+This project is licensed under the MIT license - check the [LICENSE](./LICENSE) file for
+details.
