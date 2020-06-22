@@ -26,7 +26,8 @@ function getStartChromeCommand () {
         '--disable-extensions ' +
         '--autoplay-policy=no-user-gesture-required ' +
         '--allow-running-insecure-content ' +
-        '--disable-features=TranslateUI"'
+        '--disable-features=TranslateUI"' +
+        '--disable-dev-shm-usage'
 }
 
 function getStartRecordingCommand () {

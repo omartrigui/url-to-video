@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euxo pipefail
 
 main() {
   log_i "Starting pulseaudio server"
@@ -37,7 +38,7 @@ launch_xvfb() {
 }
 
 launch_pulseaudio() {
-  pulseaudio -D --exit-idle-time=-1 &
+  pulseaudio -D --exit-idle-time=-1
 }
 
 launch_recorder() {
