@@ -15,7 +15,7 @@ function getStartChromeCommand () {
   return 'DISPLAY=:1.0 /bin/sh -c ' +
         '"/opt/google/chrome/google-chrome ' +
         '--window-position=0,0 ' +
-        '--window-size=1281,721 ' +
+        `--window-size=${+process.env.OUTPUT_VIDEO_WIDTH + 1},${+process.env.OUTPUT_VIDEO_HEIGHT + 1} ` +
         '--remote-debugging-port=9222 ' +
         '--no-first-run ' +
         '--no-default-browser-check ' +
@@ -33,7 +33,7 @@ function getStartRecordingCommand () {
   return 'ffmpeg -y ' +
         '-f x11grab ' +
         '-draw_mouse 0 ' +
-        '-s 1280x720 ' +
+        `-s ${process.env.OUTPUT_VIDEO_WIDTH}x${process.env.OUTPUT_VIDEO_HEIGHT} ` +
         '-thread_queue_size 4096 ' +
         '-i :1 ' +
         '-f pulse ' +

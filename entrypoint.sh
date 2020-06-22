@@ -21,7 +21,7 @@ launch_xvfb() {
 
   export DISPLAY=${XVFB_DISPLAY:-:1}
   local screen=${XVFB_SCREEN:-0}
-  local resolution=${XVFB_RESOLUTION:-1280x720x24}
+  local resolution="${OUTPUT_VIDEO_WIDTH}x${OUTPUT_VIDEO_HEIGHT}x24"
   local timeout=${XVFB_TIMEOUT:-5}
 
   Xvfb "${DISPLAY}" -screen "${screen}" "${resolution}" &
