@@ -11,6 +11,8 @@ var opts = {
   tcpTimeout: 100
 }
 
+// List of Chromium Command Line Switches
+// https://peter.sh/experiments/chromium-command-line-switches/
 function getStartChromeCommand () {
   return 'DISPLAY=:1.0 /bin/sh -c ' +
         '"/opt/google/chrome/google-chrome ' +

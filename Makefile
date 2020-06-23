@@ -24,6 +24,7 @@ docker.run:
                -e URL=https://www.youtube.com/watch?v=PBYKqvDK8d8 \
                -e DURATION=20 \
                -e OUTPUT_FILENAME=forever_tracey.mp4 \
+               --shm-size=256m \
                "${IMAGE}"
 
 .PHONY: docker.push

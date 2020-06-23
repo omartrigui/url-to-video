@@ -24,6 +24,7 @@ docker run --rm \
            -e URL=https://www.youtube.com/watch?v=PBYKqvDK8d8 \
            -e DURATION=20 \
            -e OUTPUT_FILENAME=forever_tracey.mp4 \
+           --shm-size=256m \
             cipheredbytes/url-to-video
 ```
 This is a [sample](./samples/forever_tracey.mp4) output file.
@@ -37,10 +38,10 @@ git https://github.com/OmarTrigui/url-to-video.git && cd url-to-video/
 make docker.build docker.run
 ```
 
-## Todo list
+## Roadmap
 
 - [ ] Add E2E tests
-- [ ] Tweak recording performance
+- [ ] Tune recording performance (reduce resource consumption)
 - [ ] Add Pub/Sub support (either [SQS](https://aws.amazon.com/sqs/) or [Kafka](https://kafka.apache.org/))
 
 
