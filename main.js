@@ -39,7 +39,7 @@ function getStartRecordingCommand () {
         `-s ${process.env.OUTPUT_VIDEO_WIDTH}x${process.env.OUTPUT_VIDEO_HEIGHT} ` +
         '-thread_queue_size 4096 ' +
         '-i :1 ' +
-        '-f pulse ' +
+        '-f alsa ' +
         '-i default ' +
         '-c:v libx264 ' +
         '-tune zerolatency ' +
