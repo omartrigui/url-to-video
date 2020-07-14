@@ -46,8 +46,8 @@ make docker.build docker.run
 
 
 ## Contributing
-Contributions are always welcome, whether adding/suggesting new features, bug fixes, 
-documenting new file formats or simply editing some grammar.
+Contributions are always welcome, whether adding/suggesting new features, bug fixes or 
+simply editing some grammar.
 
 ## License
 
